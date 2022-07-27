@@ -18,6 +18,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
 
 public class principal extends javax.swing.JFrame {
@@ -114,6 +115,8 @@ public class principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
@@ -123,6 +126,7 @@ public class principal extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
+        btnLimpiar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jSplitPane2 = new javax.swing.JSplitPane();
         jPanel3 = new javax.swing.JPanel();
@@ -161,6 +165,10 @@ public class principal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
+        jButton1.setText("jButton1");
+
+        jButton2.setText("jButton2");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ejemplo");
 
@@ -187,18 +195,27 @@ public class principal extends javax.swing.JFrame {
         jTextArea2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Mensajes(error)"));
         jScrollPane3.setViewportView(jTextArea2);
 
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
             .addComponent(jScrollPane3)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
-                .addComponent(jCheckBox1)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
+                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_Analizar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59))
+                .addGap(18, 18, 18)
+                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,10 +223,11 @@ public class principal extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton_Analizar, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jCheckBox1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_Analizar)
+                    .addComponent(jCheckBox1)
+                    .addComponent(btnLimpiar))
                 .addContainerGap())
         );
 
@@ -225,7 +243,10 @@ public class principal extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,7 +272,10 @@ public class principal extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -562,11 +586,9 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
     public DefaultTableModel model = new DefaultTableModel();
     public void B_analiza() {
-        int n=0;
+        
         DefaultListModel model2 = (DefaultListModel)jList2.getModel();
         model2.clear();
-
-        lexema lx=new lexema();
         Analisis ana = new Analisis(this);
         if (jCheckBox1.isSelected()) {
             if (b == true) {
@@ -577,12 +599,12 @@ public class principal extends javax.swing.JFrame {
                 model.addColumn("cadena");
                 model.addColumn("num_linea");
                 model.setRowCount(0);
-                n=0;
+                
                 for (int i = 0; i < ana.tabla; i++) {
                     simbolo sim =ana.TablaSimbolo.get(i);
                     String[] fila = {String.valueOf(ana.TablaSimbolo.indexOf(ana.TablaSimbolo.get(i))), sim.lexer, String.valueOf(sim.num_linea)};
                     model.addRow(fila);
-                    n++;
+                    
                 }
                 //model.addRow(lx.fila);
                 jTable1.setModel(model);
@@ -735,6 +757,15 @@ public class principal extends javax.swing.JFrame {
             Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMGuardarPatronActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        DefaultListModel model2 = (DefaultListModel)jList2.getModel();
+        for(int i = 0; i < model.getRowCount();i++){
+            model.removeRow(i);
+            i -= 1;
+        }
+        model2.clear();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -774,11 +805,14 @@ public class principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem JMAbrirPatron;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JMenuItem guardarJMI;
     private javax.swing.JButton jBAGREGAR;
     private javax.swing.JButton jBELIMINAR;
     private javax.swing.JButton jBMODIFICAR;
     private javax.swing.JButton jBPROBAR;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton_Analizar;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLProbar;

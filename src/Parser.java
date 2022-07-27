@@ -7,6 +7,8 @@ public class Parser {
     
     private Token actual;
     private ArrayList <simbolo> Tabla = new ArrayList();
+    private principal padre; 
+    private int tokenr = 0;
     
     DefaultListModel<Token> Flujotokens;
     
@@ -35,6 +37,8 @@ public class Parser {
         return s;
     }
     
+    //meodo termino
+    
     
     
     //metodos exrtras
@@ -44,6 +48,17 @@ public class Parser {
             s +=">\t";
         }
         s += mensaje + "\n";
+    }
+    
+    private boolean leerTerminal (String to){
+        if(to.equals(padre.ListaToken.get(tokenr).getToken())){
+        return true;
+        }
+        return false;
+    }
+    
+    private void avanzarToken(){
+        tokenr++;
     }
     
 }
