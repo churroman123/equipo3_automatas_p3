@@ -39,8 +39,11 @@ public class Parser {
     
     //metodos exrtras
     public void mensaje(int j, String mensaje) throws ErrorSintaxis{
+        String s = "";
         for (int i = 0; i < j; i++){
-            
+            s +=">\t";
         }
+        s += mensaje + "\n";
     }
+    
 }
