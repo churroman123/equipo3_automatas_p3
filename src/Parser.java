@@ -25,45 +25,55 @@ public class Parser {
         public ErrorSintaxis(String message){
             super(message);
         }
+        
     }
     
     public void analizar() throws ErrorSintaxis{
-        factor(0);
+        expresion(0);
     }
     
     public void programa(int r) throws ErrorSintaxis{
         
     }
-    
+    // metodo termino
     public void termino(int r) throws ErrorSintaxis {
         mensaje(r, "Buscando Termino");
-        factor(r + 1);
-
-        while (leerTerminal("$_mul") || leerTerminal("$_div")) {
+         if((leerTerminal("$_multiplicacion") || leerTerminal("$_div"))){
+            mensaje(r, "Se encontro" + actual.getToken() + " en termino.");
+            avanzarToken();
+            factor(r + 1);
+        
+        }
+        if(!leerTerminal("$_multiplicacion") || !leerTerminal("$_div")){
+         factor(r + 1);
+        }else  if((leerTerminal("$_multiplicacion") || leerTerminal("$_div"))){
             mensaje(r, "Se encontro" + actual.getIdx() + " en termino.");
             avanzarToken();
             factor(r + 1);
+        
         }
+    
+       
         mensaje(r, "Se encontro termino");
 
     }
-
+//metodo expresion
     public void expresion(int r) throws ErrorSintaxis {
         mensaje(r, "Buscando Expresion");
 
         if (leerTerminal("$_mas") || leerTerminal("$_menos")) {
-            mensaje(r, "Se encontro" + actual.getIdx() + " en termino.");
+            mensaje(r, "Se encontro" + actual.getToken() + " en termino.");
             avanzarToken();
         }
         termino(r + 1);
         while (leerTerminal("$_mas") || leerTerminal("$_menos")) {
-            mensaje(r, "Se encontro" + actual.getIdx() + " en termino.");
+            mensaje(r, "Se encontro" + actual.getToken() + " en termino.");
             avanzarToken();
             termino(r + 1);
         }
         mensaje(r, "se encontro termino");
     }
-
+//Metodo condicion
     public void condicion(int r) throws ErrorSintaxis {
         mensaje(r, "Buscando condición ");
         if (leerTerminal("$_odd")) {
@@ -85,11 +95,11 @@ public class Parser {
         }
         mensaje(r, "Se encontro condicion");
     }
-
+// metodo declaracion
     public void declaracion(int r) throws ErrorSintaxis {
         mensaje(r, "Buscando declaracion");
         if (leerTerminal("identificador")) {
-            mensaje(r, "Se encontro identificador" + getNombreSimboloTabla(actual.getToken()));
+            mensaje(r, "Se encontro identificador" + actual.getIdx());
             avanzarToken();
 
             if (leerTerminal("$_asignar")) {
@@ -101,7 +111,7 @@ public class Parser {
         } else if (leerTerminal("$_llamar")) {
             avanzarToken();
             if (leerTerminal("identificador")) {
-                mensaje(r, "Se encontro identificador" + getNombreSimboloTabla(actual.getToken()));
+                mensaje(r, "Se encontro identificador" +  actual.getIdx());
                 avanzarToken();
             } else {
                 Error(r, "Se esperaba identificador despues de call en declaracion");
@@ -110,7 +120,7 @@ public class Parser {
             mensaje(r, "se encontro ?");
             avanzarToken();
             if (leerTerminal("identificador")) {
-                mensaje(r, "Se encontro identificador" + getNombreSimboloTabla(actual.getToken()));
+                mensaje(r, "Se encontro identificador" +  actual.getIdx());
                 avanzarToken();
             } else {
                 Error(r, "se esperaba identificador despues de '?'");
@@ -158,13 +168,13 @@ public class Parser {
             }
         }
     }
-
+//metodo bloque
     public void bloque(int r) throws ErrorSintaxis {
         if (leerTerminal("$_constante")) {
             mensaje(r, "Se encontro constante");
             avanzarToken();
             if (leerTerminal("identificador")) {
-                mensaje(r, "Se encontro identificador" + getNombreSimboloTabla(actual.getToken()));
+                mensaje(r, "Se encontro identificador" +  actual.getIdx());
                 avanzarToken();
             } else {
                 Error(r, "Error se esperaba encontrar identificador despues de constante");
@@ -176,14 +186,14 @@ public class Parser {
                 Error(r, "No se encontron =");
             }
             if (leerTerminal("$_literal_num")) {
-                mensaje(r, "Se encontro identificador" + getNombreSimboloTabla(actual.getToken()));
+                mensaje(r, "Se encontro identificador" +  actual.getIdx());
                 avanzarToken();
             } else {
                 Error(r, "Se esperaba numero ");
             }
             while (leerTerminal("$_coma")) {
                 if (leerTerminal("identificador")) {
-                    mensaje(r, "Se encontro identificador" + getNombreSimboloTabla(actual.getToken()));
+                    mensaje(r, "Se encontro identificador" + actual.getIdx());
                     avanzarToken();
                 } else {
                     Error(r, "Error se esperaba encontrar identificador despues de constante");
@@ -195,7 +205,7 @@ public class Parser {
                     Error(r, "No se encontron =");
                 }
                 if (leerTerminal("$_literal_num")) {
-                    mensaje(r, "Se encontro numero" + getNombreSimboloTabla(actual.getToken()));
+                    mensaje(r, "Se encontro numero" + actual.getIdx());
                     avanzarToken();
                 } else {
                     Error(r, "Se esperaba numero ");
@@ -213,14 +223,14 @@ public class Parser {
             mensaje(r, "Se encontro mensaje");
             avanzarToken();
             if (leerTerminal("identificador")) {
-                mensaje(r, "Se encontro identificador" + getNombreSimboloTabla(actual.getToken()));
+                mensaje(r, "Se encontro identificador" +  actual.getIdx());
                 avanzarToken();
             } else {
                 Error(r, "Error se esperaba encontrar identificador despues de variable");
             }
             while (leerTerminal("$_coma")) {
                 if (leerTerminal("identificador")) {
-                    mensaje(r, "Se encontro identificador" + getNombreSimboloTabla(actual.getToken()));
+                    mensaje(r, "Se encontro identificador" + actual.getIdx());
                     avanzarToken();
                 } else {
                     Error(r, "Error se esperaba encontrar identificador despues de coma");
@@ -236,7 +246,7 @@ public class Parser {
         }
         while (leerTerminal("$_procedimiento")) {
             if (leerTerminal("identificador")) {
-                mensaje(r, "Se encontro identificador" + getNombreSimboloTabla(actual.getToken()));
+                mensaje(r, "Se encontro  " + actual.getIdx());
                 avanzarToken();
             } else {
                 Error(r, "Error se esperaba encontrar identificador ");
@@ -276,19 +286,28 @@ public class Parser {
         mensaje(r, "Buscando factor");
         
         if(leerTerminal("$_identificador")){
-            mensaje(r, "Se encontro identificador"+ getNombreSimboloTabla(actual.getToken()) );
+            mensaje(r, "Se encontro identificador"+ actual.getToken());
             avanzarToken();
             mensaje(r,"se encontro factor con identificador");
         }else if(leerTerminal("$_literal_num")){
-            mensaje(r, "Se encontro identificador"+ getNombreSimboloTabla(actual.getToken()) );
+            mensaje(r, "Se encontro identificador "+ actual.getIdx());
             avanzarToken();
             mensaje(r,"se encontro factor con literal_numr");
-//        }else if(leerTerminal("$_abre_p9ar")){
-//             mensaje(r, "se encontro se abre par");
-//             avanzarToken();             
-        }else{
-             mensaje(r, "error");
-        }
+            if(leerTerminal("$_literal_num"))
+                factor(r+1);
+        }else if(leerTerminal("$_abre_p9ar")){
+             mensaje(r, "se encontro se abre par");
+             avanzarToken();         
+             expresion(r+1);
+             
+             if(leerTerminal("$_cierra_par")){
+                 avanzarToken();
+                 mensaje(r, "Se encontro factor con (expresion) ");
+             }else
+                 Error(r,"Error se esperaba ) para factor");
+        }else
+           Error(r, "Error se esperaba Factor");
+        
     }
     
     //metodos exrtras
@@ -298,6 +317,8 @@ public class Parser {
             s +=">\t";
         }
         s += mensaje + "\n";
+        System.out.println(mensaje);
+        padre.SinTextArea.append(s);
     }
     private void getToken() throws ErrorSintaxis{
         if(tokenr >= Flujotokens.size() )
@@ -318,11 +339,13 @@ public class Parser {
         }
         s += mensaje;
         s += "cerca de la linea"  ;
+        System.err.println(s);
+        throw new ErrorSintaxis(s);
     }
     
-    private boolean leerTerminal (String to){
-        
-        if(to.equals(padre.ListaToken.get(tokenr).getToken())){
+    private boolean leerTerminal (String to) throws ErrorSintaxis{
+        getToken();
+        if(to.equals(actual.token)){
         return true;
         }
         return false;
@@ -332,8 +355,9 @@ public class Parser {
         tokenr++;
     }
     
-    public void añadirTexto(){
-        padre.SinTextArea.setText("asaa");
+    public void añadirTexto(String linea) throws ErrorSintaxis{
+        throw new ErrorSintaxis(linea);
+
     }
     
 }

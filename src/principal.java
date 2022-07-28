@@ -25,7 +25,9 @@ public class principal extends javax.swing.JFrame {
 
     public File fil=new File("C:/Users/Admin/Documents/NetBeansProjects/equipo1_automatas_p2/src/expresiones.txt");
     public FileReader archi;
-
+    
+    Parser parse;
+    Analisis ana = new Analisis(this);
     private void lista(FileReader archi) {
         try {
             BufferedReader br = new BufferedReader(archi);
@@ -82,8 +84,10 @@ public class principal extends javax.swing.JFrame {
             lista(archi);
             jList1.setModel(getListaPatrones());
             jList2.setModel(getListaToken());
+            parse = new Parser(this,ListaToken, ana.TablaSimbolo);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
     }
 
@@ -285,9 +289,9 @@ public class principal extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83)
+                .addGap(61, 61, 61)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -603,11 +607,10 @@ public class principal extends javax.swing.JFrame {
         this.setTitle(abrir.titulo);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
     public DefaultTableModel model = new DefaultTableModel();
-    public void B_analiza() {
-        
+    public void B_analiza() throws Parser.ErrorSintaxis {
         DefaultListModel model2 = (DefaultListModel)jList2.getModel();
         model2.clear();
-        Analisis ana = new Analisis(this);
+        principal padre = null;
         if (jCheckBox1.isSelected()) {
             if (b == true) {
                 guardarArchivo(ultimoarchivo, jTextArea1.getText());
@@ -621,6 +624,7 @@ public class principal extends javax.swing.JFrame {
                 for (int i = 0; i < ana.tabla; i++) {
                     simbolo sim =ana.TablaSimbolo.get(i);
                     String[] fila = {String.valueOf(ana.TablaSimbolo.indexOf(ana.TablaSimbolo.get(i))), sim.lexer, String.valueOf(sim.num_linea)};
+                  
                     model.addRow(fila);
                     
                 }
@@ -661,14 +665,22 @@ public class principal extends javax.swing.JFrame {
         }
             
     }
+    
     private void jButton_AnalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AnalizarActionPerformed
-        // TODO add your handling code here:
-        B_analiza();
+        try {
+            // TODO add your handling code here:
+            B_analiza();
+            parse.analizar();
+            
+            
+        } catch (Parser.ErrorSintaxis ex) {
+             jTextArea2.append(ex.getMessage());
+        }
     }//GEN-LAST:event_jButton_AnalizarActionPerformed
     
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-        B_analiza();
+       jButton_AnalizarActionPerformed(null);
+    
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -778,6 +790,7 @@ public class principal extends javax.swing.JFrame {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         DefaultListModel model2 = (DefaultListModel)jList2.getModel();
+        
         jTextArea2.setText(" ");
         for(int i = 0; i < model.getRowCount();i++){
             model.removeRow(i);

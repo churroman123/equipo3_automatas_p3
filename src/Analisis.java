@@ -21,11 +21,13 @@ public class Analisis {
 
     public void Analizar(File archivo) {
         //Limpia la tabla de simbolos
-        TablaSimbolo.clear();
+        
         
         try {
+            TablaSimbolo.clear();
             BufferedReader br = new BufferedReader(new FileReader(archivo));
             String linea;
+           
            
             while ((linea = br.readLine()) != null) {
                 analizarLinea(linea, cont_linea);
