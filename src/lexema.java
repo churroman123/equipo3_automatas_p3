@@ -81,7 +81,7 @@ public class lexema {
 
 //                if (!matchFound) {
 //                    System.out.println("no se encontro");
-//                    throw new Exception("Error, np coincide ningun patron");
+//                    throw new Exception("Error, no coincide ningun patron");
 //                }
             }
 

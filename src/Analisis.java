@@ -12,7 +12,7 @@ public class Analisis {
     public ArrayList<simbolo> TablaSimbolo;
     
     principal padre;
-
+    public  int cont_linea = 0;
     public Analisis(principal p) {
         TablaSimbolo = new ArrayList<>();
         padre = p;
@@ -25,7 +25,7 @@ public class Analisis {
         try {
             BufferedReader br = new BufferedReader(new FileReader(archivo));
             String linea;
-            int cont_linea = 0;
+           
             while ((linea = br.readLine()) != null) {
                 analizarLinea(linea, cont_linea);
 
