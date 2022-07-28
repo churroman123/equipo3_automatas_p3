@@ -37,9 +37,25 @@ public class Parser {
         return s;
     }
     
-    //meodo termino
-    
-    
+    //meodo factor
+    public void factor (int r) throws ErrorSintaxis{
+        mensaje(r, "Buscando factor");
+        
+        if(leerTerminal("$_identificador")){
+            mensaje(r, "Se encontro identificador"+ getNombreSimboloTabla(actual.getToken()) );
+            avanzarToken();
+            mensaje(r,"se encontro factor con identificador");
+        }else if(leerTerminal("$_literal_num")){
+            mensaje(r, "Se encontro identificador"+ getNombreSimboloTabla(actual.getToken()) );
+            avanzarToken();
+            mensaje(r,"se encontro factor con literal_numr");
+//        }else if(leerTerminal("$_abre_p9ar")){
+//             mensaje(r, "se encontro se abre par");
+//             avanzarToken();             
+        }else{
+             mensaje(r, "error");
+        }
+    }
     
     //metodos exrtras
     public void mensaje(int j, String mensaje) throws ErrorSintaxis{
@@ -51,6 +67,7 @@ public class Parser {
     }
     
     private boolean leerTerminal (String to){
+        
         if(to.equals(padre.ListaToken.get(tokenr).getToken())){
         return true;
         }

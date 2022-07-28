@@ -760,11 +760,13 @@ public class principal extends javax.swing.JFrame {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         DefaultListModel model2 = (DefaultListModel)jList2.getModel();
+        jTextArea2.setText(" ");
         for(int i = 0; i < model.getRowCount();i++){
             model.removeRow(i);
             i -= 1;
         }
         model2.clear();
+        
     }//GEN-LAST:event_btnLimpiarActionPerformed
     /**
      * @param args the command line arguments
