@@ -2,7 +2,6 @@
 public class Token {
     String idx;
     String token;
-
     public Token(String idx, String token) {
         this.idx = idx;
         this.token = token;

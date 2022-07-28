@@ -137,7 +137,7 @@ public class principal extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jSeparator3 = new javax.swing.JSeparator();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        SinTextArea = new javax.swing.JTextArea();
         jPanel5 = new javax.swing.JPanel();
         jSplitPane3 = new javax.swing.JSplitPane();
         jPanel6 = new javax.swing.JPanel();
@@ -273,9 +273,10 @@ public class principal extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane5.setViewportView(jTextArea3);
+        SinTextArea.setEditable(false);
+        SinTextArea.setColumns(20);
+        SinTextArea.setRows(5);
+        jScrollPane5.setViewportView(SinTextArea);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -285,8 +286,8 @@ public class principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -824,6 +825,7 @@ public class principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem JMAbrirPatron;
+    public javax.swing.JTextArea SinTextArea;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JMenuItem guardarJMI;
     private javax.swing.JButton jBAGREGAR;
@@ -871,7 +873,6 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     public javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;

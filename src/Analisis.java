@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 public class Analisis {
 
     public ArrayList<simbolo> TablaSimbolo;
-    
+    Parser psr;
     principal padre;
     public  int cont_linea = 0;
     public Analisis(principal p) {
@@ -22,6 +22,7 @@ public class Analisis {
     public void Analizar(File archivo) {
         //Limpia la tabla de simbolos
         TablaSimbolo.clear();
+        
         try {
             BufferedReader br = new BufferedReader(new FileReader(archivo));
             String linea;
