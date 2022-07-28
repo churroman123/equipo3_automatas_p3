@@ -9,8 +9,17 @@ public class Parser {
     private ArrayList <simbolo> Tabla = new ArrayList();
     private principal padre; 
     private int tokenr = 0;
+    private Analisis ana;
+    
     
     DefaultListModel<Token> Flujotokens;
+    
+    //constructor
+    public Parser(principal padre, DefaultListModel<Token> flujo_tokens, ArrayList<simbolo> tabla ){
+        this.padre = padre;
+        this.Tabla = tabla;
+        Flujotokens = flujo_tokens;
+    }
     
     public class ErrorSintaxis extends Exception{
         public ErrorSintaxis(String message){
@@ -19,7 +28,7 @@ public class Parser {
     }
     
     public void analizar() throws ErrorSintaxis{
-        
+        factor(0);
     }
     
     public void programa(int r) throws ErrorSintaxis{
@@ -64,6 +73,26 @@ public class Parser {
             s +=">\t";
         }
         s += mensaje + "\n";
+    }
+    private void getToken() throws ErrorSintaxis{
+        if(tokenr >= Flujotokens.size() )
+            Error(0," Error: se esperaban más tokens pero ya no hay");
+        actual  = Flujotokens.elementAt(tokenr);
+        
+        if(actual == null)
+            Error(0," Error: el token actual fue null");
+            
+        
+    }
+    
+    public void Error(int j, String mensaje)throws ErrorSintaxis{
+        String s = "";
+        
+        for (int i = 0; i < j ; i++){
+            s += "\t";
+        }
+        s += mensaje;
+        s += "cerca de la linea"  ;
     }
     
     private boolean leerTerminal (String to){
